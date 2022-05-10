@@ -1,5 +1,6 @@
-import { MutableRefObject } from "react"
-import Form from 'react-bootstrap/Form'
+import React from 'react';
+import { MutableRefObject } from "react";
+import Form from 'react-bootstrap/Form';
 
 export default function InputField(
   { name, label, type, placeholder, error, fieldref, required, min, max, value, step }: inputInterface
