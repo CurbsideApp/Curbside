@@ -33,15 +33,18 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
-      # - run: |
-      #     npm ci
-      #     npx prisma db push
-      #     npm test
-      #   working-directory: ./server
-      #   env:
-      #     DATABASE_URL: ${{secrets.DATABASE_URL}}
-      #     FIREBASE_API_KEY: ${{secrets.FIREBASE_API_KEY}}
-      #     SECRET_UID: ${{secrets.SECRET_UID}}
+      - run: |
+          npm ci
+          npx prisma db push
+          npx jest
+        working-directory: ./server
+        env:
+          DATABASE_URL: ${{secrets.DATABASE_URL}}
+          FIREBASE_API_KEY: ${{secrets.FIREBASE_API_KEY}}
+          SECRET_UID: ${{secrets.SECRET_UID}}
+          FIREBASE_ADMIN_PRIVATE_KEY: ${{secrets.FIREBASE_ADMIN_PRIVATE_KEY}}
+          FIREBASE_ADMIN_CLIENT_EMAIL: ${{secrets.FIREBASE_ADMIN_CLIENT_EMAIL}}
+          FIREBASE_ADMIN_PROJECT_ID: ${{secrets.FIREBASE_ADMIN_PROJECT_ID}}
       - run: |
           npm ci
           npm test

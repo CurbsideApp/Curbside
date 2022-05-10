@@ -22,6 +22,8 @@ module.exports = {
   ],
   rules: {
     semi: ['error', 'always'],
-    '@typescript-eslint/explicit-function-return-type': ['error']
+    '@typescript-eslint/explicit-function-return-type': ['error'],
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': ['error']
   }
 };

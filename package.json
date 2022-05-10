@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start: server": "cd server && npm start",
-    "start: client": "cd client && npm start",
+    "start:server": "cd server && npm start",
+    "start:client": "cd client && npm start",
     "test": "cd server && npm test && cd ../client && npm test",
     "prepare": "husky install",
     "install": "cd server && npm install && cd ../client && npm install"

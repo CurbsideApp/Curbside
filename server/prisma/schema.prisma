@@ -38,9 +38,11 @@ model Listing {
   user          User             @relation(fields: [userId], references: [id])
   userId        String
   transactionId String           @default(cuid())
+  priceInCents  Int
+  currency      String
   title         String
   description   String
-  images        String[]
+  photoUrls     String[]
   status        ListingStatus    @default(available)
   longitude     Float
   latitude      Float

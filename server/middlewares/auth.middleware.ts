@@ -1,11 +1,17 @@
 import { NextFunction, Request, Response } from 'express';
 import { initializeApp } from 'firebase-admin/app';
-import { auth, credential, ServiceAccount } from 'firebase-admin';
-import { USER_NOT_AUTHENTICATED } from '../errors/SharedErrorMessages';
+import { auth, credential } from 'firebase-admin';
+import dotenv from 'dotenv';
+import path from 'path';
+dotenv.config({ path: path.resolve(__dirname, `../config/${process.env.NODE_ENV}.env`) });
 
-const serviceAccount = require('../config/service-account.json');
-
-initializeApp({ credential: credential.cert(serviceAccount as ServiceAccount) });
+initializeApp({
+  credential: credential.cert({
+    projectId: process.env.FIREBASE_ADMIN_PROJECT_ID,
+    clientEmail: process.env.FIREBASE_ADMIN_CLIENT_EMAIL,
+    privateKey: process.env.FIREBASE_ADMIN_PRIVATE_KEY
+  })
+});
 
 export const authMiddleware = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
@@ -18,11 +24,13 @@ export const authMiddleware = async (req: Request, res: Response, next: NextFunc
         req.user = user;
         next();
       } else {
-        res.status(403).send({ error: USER_NOT_AUTHENTICATED });
+        next();
       }
+    } else {
+      next();
     }
   } catch (error) {
     console.log(error);
-    res.status(401).send({ error: USER_NOT_AUTHENTICATED });
+    next();
   }
 };
