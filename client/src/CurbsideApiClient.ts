@@ -11,11 +11,12 @@ export default class CurbsideApiClient {
 
   async request(options:options) {
     let auth = this.userToken !== null ? {'Authorization': `Bearer ${this.userToken}`} : undefined;
+    Object.keys(options.query).forEach(key => options.query[key] === undefined && delete options.query[key])
     let query = new URLSearchParams(options.query || {}).toString();
     if (query !== '') {
       query = '?' + query;
     }
-
+    console.log(query)
     let response;
     try {
       response = await fetch(this.base_url + options.url + query, {
@@ -71,5 +72,5 @@ interface options {
 }
 
 interface query {
-  [key:string] : number | string
+  [key:string] : number | string | undefined
 }

@@ -51,8 +51,11 @@ export const finalizeUserInputValidation = async (userId: string, userDetails: F
   if (!_nameVerification(userDetails.lastName)) {
     errorMessages.lastName = usersModelErrorMessages.invalidLastName;
   }
-  if (!_coordinationVerification(userDetails.longitude)) {
+  if (!coordinationVerification(userDetails.longitude)) {
     errorMessages.longitude = usersModelErrorMessages.invalidCoordinate;
+  }
+  if (!coordinationVerification(userDetails.latitude)) {
+    errorMessages.latitude = usersModelErrorMessages.invalidCoordinate;
   }
   const userExists = await userQueries.getUserById(userId);
   if (userExists === null) {
@@ -73,7 +76,7 @@ const _nameVerification = (name: string):boolean => {
   return true;
 };
 
-const _coordinationVerification = (coord: number): boolean => {
+export const coordinationVerification = (coord: number): boolean => {
   if (typeof coord !== 'number') {
     return false;
   }

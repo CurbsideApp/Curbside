@@ -21,6 +21,7 @@ export const authMiddleware = async (req: Request, res: Response, next: NextFunc
       const user = await auth().verifyIdToken(idToken);
       if (user) {
         // @ts-ignore
+
         req.user = user;
         next();
       } else {

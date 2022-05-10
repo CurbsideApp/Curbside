@@ -1,9 +1,12 @@
 import { User } from '@prisma/client';
 import { CustomError } from '../errors/CustomError.class';
-import { USER_PARSING_ERROR } from '../errors/SharedErrorMessages';
+import { USER_NOT_FOUND, USER_PARSING_ERROR } from '../errors/SharedErrorMessages';
+import { IListing } from '../interfaces/listing.interface';
+import { ProfileDTO } from '../interfaces/profile.interface.dto';
 import { IUser } from '../interfaces/user.interface';
 import { FinalizeUserDTO, InitialUserDTO } from '../interfaces/users.interface.dto';
 import { prisma } from '../prisma/client';
+import { getListingsByUserId } from './listingsQueries';
 
 const convertDataBaseUserToUser = (dbUser: User): IUser => {
   try {
@@ -58,9 +61,49 @@ export const getUserById = async (id: string): Promise<IUser | null> => {
   const user: IUser = convertDataBaseUserToUser(dbUser);
   return user;
 };
+
+export const getForeignProfile = async (userId: string): Promise<ProfileDTO> => {
+  const result: ProfileDTO = <ProfileDTO>{ };
+  const user: IUser | null = await getUserById(userId);
+  if (!user) {
+    throw new CustomError(USER_NOT_FOUND, 404);
+  }
+  result.user = {
+    id: user.id,
+    firstName: user.firstName!,
+    lastName: user.lastName!,
+    photoUrl: user.photoUrl,
+    createdAt: user.createdAt
+  };
+
+  const listings: IListing[] = await getListingsByUserId(userId);
+  result.listings = listings;
+  if (result.user === undefined) {
+    throw new CustomError(USER_NOT_FOUND, 404);
+  }
+  return result;
+};
+
+export const getOwnProfile = async (userId: string): Promise<ProfileDTO> => {
+  const result: ProfileDTO = <ProfileDTO>{ };
+  const user: IUser | null = await getUserById(userId);
+  if (!user) {
+    throw new CustomError(USER_NOT_FOUND, 404);
+  }
+  result.user = user;
+  const listings: IListing[] = await getListingsByUserId(userId);
+  result.listings = listings;
+  if (result.user === undefined) {
+    throw new CustomError(USER_NOT_FOUND, 404);
+  }
+  return result;
+};
+
 export default {
   createInitialUser,
   finalizeUser,
   getUserByEmail,
-  getUserById
+  getUserById,
+  getForeignProfile,
+  getOwnProfile
 };

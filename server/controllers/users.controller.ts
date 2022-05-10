@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
+import { ProfileDTO } from '../interfaces/profile.interface.dto';
 import { FinalizeUserDTO, InitialUserDTO } from '../interfaces/users.interface.dto';
 import usersModel from '../models/users.model';
 
@@ -23,7 +24,19 @@ const finalizeUser = async (req: Request, res: Response, next: NextFunction): Pr
   }
 };
 
+const getUserProfile = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  try {
+    const userId = req.params.id;
+    // @ts-ignore
+    const { user, listings }: ProfileDTO = await usersModel.getUser(req.user?.uid, userId);
+    res.status(200).send({ user, listings });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export default {
+  getUserProfile,
   addInitialUser,
   finalizeUser
 };

@@ -22,7 +22,8 @@ const convertDataBaseListingToListing = (dbListing: Listing): IListing => {
       photoUrls: dbListing.photoUrls,
       longitude: dbListing.longitude,
       latitude: dbListing.latitude,
-      status: dbListing.status
+      status: dbListing.status,
+      createdAt: dbListing.createdAt
     };
     return listing;
   } catch (error) {
@@ -45,6 +46,17 @@ export const createListing = async (listingDetails: AddListingDTO): Promise<ILis
   return listing;
 };
 
+export const getListingsByUserId = async (userId: string):Promise<IListing[]> => {
+  const dbListings = await prisma.listing.findMany({
+    where: {
+      userId
+    }
+  });
+  const listings = dbListings.map(convertDataBaseListingToListing);
+  return listings;
+};
+
 export default {
-  createListing
+  createListing,
+  getListingsByUserId
 };

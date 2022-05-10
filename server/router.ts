@@ -10,6 +10,12 @@ router.post('/users', usersController.addInitialUser);
 
 router.patch('/users/:id', loginRequired, usersController.finalizeUser);
 
+<<<<<<< HEAD
 router.post('/listings', listingsController.addListing);
 
 router.get('/listings/spatial', spatialSearch);
+=======
+router.post('/listings', loginRequired, listingsController.addListing);
+
+router.get('/users/:id', usersController.getUserProfile);
+>>>>>>> 78db83ce215bae1eeebb7f0acbedf3962dda9ce8

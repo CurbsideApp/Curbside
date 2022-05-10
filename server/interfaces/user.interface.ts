@@ -10,3 +10,11 @@ export interface IUser {
   longitude?: number,
   latitude?: number,
 }
+
+export interface IStrippedUser {
+  id: string,
+  firstName: string,
+  lastName: string,
+  photoUrl?: string,
+  createdAt: Date,
+}

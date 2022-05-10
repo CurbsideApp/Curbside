@@ -16,4 +16,5 @@ export interface IListing {
   longitude: number,
   latitude: number,
   status: string,
+  createdAt: Date,
 }

@@ -1,5 +1,6 @@
 import { CustomError } from '../errors/CustomError.class';
 import { UNKNOWN_SERVER_ERROR } from '../errors/SharedErrorMessages';
+import { ProfileDTO } from '../interfaces/profile.interface.dto';
 import { IUser } from '../interfaces/user.interface';
 import { FinalizeUserDTO, InitialUserDTO } from '../interfaces/users.interface.dto';
 import userQueries from '../queries/userQueries';
@@ -33,7 +34,28 @@ const finalizeUser = async (userId: string, userDetails: FinalizeUserDTO): Promi
   }
 };
 
+const getUser = async (requesterId: string | undefined, userId: string): Promise<ProfileDTO> => {
+  try {
+    if (requesterId === userId) {
+      // if request is authenticated and is  the owner of the account
+      // then return all data
+      const data = await userQueries.getOwnProfile(userId);
+      return data;
+    } else {
+      const data = await userQueries.getForeignProfile(userId);
+      return data;
+    }
+  } catch (error) {
+    console.log('/models/users.model getUser ERROR', error);
+    if (error instanceof CustomError) {
+      throw error;
+    }
+    throw new CustomError(UNKNOWN_SERVER_ERROR, 500);
+  }
+};
+
 export default {
   addInitialUser,
-  finalizeUser
+  finalizeUser,
+  getUser
 };
