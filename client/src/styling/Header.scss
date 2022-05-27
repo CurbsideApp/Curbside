@@ -1,0 +1,101 @@
+.Header {
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+
+  width: 100%;
+  min-height: var(--header-height);
+  display: flex;
+  align-items: center;
+  box-shadow: 0px 0px 8px 0.5px rgba(8, 1, 1, 0.4);
+
+  z-index: 1;
+  background-color: white;
+  padding: 0px 15px 0px 15px;
+
+  justify-content: space-between;
+  flex-direction: row;
+
+  .curbside-home {
+    border: none;
+    background: none;
+    height: 35px;
+    padding-right: 0;
+    padding-left: 0;
+
+    img {
+      height: 100%;
+    }
+  }
+
+  h1 {
+    margin: 0;
+  }
+
+  .header-login {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  .PrevRoute {
+    border: none;
+    background: transparent;
+    font-size: 24px;
+  }
+  .treesPlanted {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 0;
+    border:1px solid rgb(209, 209, 209);
+    border-radius:20px;
+    padding: 6px 8px;
+    img {
+      height: 25px;
+      margin-right: 8px;
+    }
+    color: var(--main-gray);
+    font-weight: 600;
+  };
+
+  &.ChatHeader {
+    justify-content: flex-start;
+    gap: 16px;
+    align-items: center;
+
+    .listingImage {
+      border-radius: 24px;
+      height: 44px;
+      width: 44px;
+      min-width: 44px;
+      background-size: cover;
+      background-position: center;
+      background-color: #2d2d2d;
+    }
+
+    .listingTitle {
+      font-weight: 600;
+      margin-bottom: 0;
+      text-align: left;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      max-width: 15ch;
+    }
+
+    .listingPrice {
+      text-align: left;
+      margin-bottom: 0;
+      font-size: 12px;
+      color: var(--main-gray);
+    }
+
+    .sellerName {
+      color: var(--main-gray);
+      margin-bottom: 0;
+      margin-left: auto;
+      font-size: 12px;
+    }
+  }
+
+
+}

@@ -1,0 +1,13 @@
+.InputField {
+  margin-bottom: 15px;
+  text-align: left;
+
+  .form-control {
+    // box-shadow: rgba(53, 121, 96, 0.2) 0px 2px 8px 0px;
+  }
+  .form-control:focus {
+    border-color: var(--main-green-color);
+    box-shadow: rgba(53, 121, 96, 0.2) 0px 2px 8px 0px;
+
+  }
+}

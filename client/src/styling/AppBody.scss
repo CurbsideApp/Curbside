@@ -1,0 +1,19 @@
+.AppBody {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  & > .wrapper {
+    flex-grow: 1;
+    margin-top: var(--header-height);
+    margin-bottom: var(--footer-height);
+    height: auto;
+    width: 100%;
+  }
+
+  &.noFooter {
+    & > .wrapper {
+      margin-bottom: 0;
+    }
+  }
+}

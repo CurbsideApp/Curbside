@@ -1,0 +1,70 @@
+@import '../App.scss';
+
+.FooterLink {
+  padding: 0px 10px;
+  cursor: pointer;
+  border-radius: 10px;
+  color: #dad7d7;
+
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
+  i {
+    text-shadow: #3d3d3c 0px 0 20px;
+
+    // &:hover {
+    //   color: white;
+    //   font-weight: 900;
+    // }
+  }
+
+  &.active {
+    color: white;
+    font-weight: 900;
+    font-size: larger;
+  }
+  p {
+    display: none;
+  }
+  @include lg {
+    padding: 0;
+    width: 100%;
+    text-decoration: none;
+    font-weight: normal;
+    // border-radius: 0px 10px 10px 0;
+    background-color: transparent;
+    color: var(--main-green-color);
+    font-size: medium;
+    -webkit-transition: background-color 200ms;
+    &:hover {
+      background-color: #3579602a;
+      color: var(--main-green-color);
+    }
+    .wrapper {
+      padding: 10px;
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+
+    &.active {
+      color: var(--main-green-color);
+      background-color: #3579602a;
+      font-weight: 400;
+      font-size: medium;
+    }
+
+    i {
+      text-shadow: #3d3d3c 0px 0 20px;
+
+      &:hover {
+        font-weight: 900;
+      }
+    }
+    p {
+      margin: 0;
+      display: inline;
+    }
+  }
+}

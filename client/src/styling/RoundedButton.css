@@ -1,0 +1,28 @@
+.map-button{
+  border:none;
+  border-radius:30px;
+  background-color: #357960;
+  opacity: 0.64;
+  width: fit-content;
+  font-size:20px;
+  height:60px;
+  width:60px;
+  transition:0.3s;
+}
+.map-button:hover{
+  border:none;
+  border-radius:30px;
+  background-color: #357960;
+  opacity:1;
+  width: fit-content;
+  font-size:20px;
+  height:60px;
+  width:60px;
+}
+.map-button i{
+padding-right: 0;
+padding-top:1px;
+}
+.map-button p{
+  margin:0;
+}

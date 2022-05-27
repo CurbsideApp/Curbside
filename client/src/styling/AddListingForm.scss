@@ -1,0 +1,56 @@
+@import '../App.scss';
+
+.AddListingView {
+  padding-top: 25px;
+  padding-bottom: 50px;
+  margin: 0 auto 100px auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  .form-select:focus {
+    border-color: var(--main-green-color);
+    box-shadow: rgba(53, 121, 96, 0.2) 0px 2px 8px 0px;
+  }
+
+  .drop-down-full-width {
+    width: 100% !important;
+  }
+
+  .nav > li.dropdown.open {
+    position: static;
+  }
+  .nav > li.dropdown.open .dropdown-menu {
+    display: table;
+    width: 100%;
+    text-align: center;
+    left: 0;
+    right: 0;
+  }
+  .dropdown-menu {
+    width: 100%;
+    text-align: center;
+  }
+
+  .add-item-buttons {
+    margin-top: 20px;
+    position: fixed;
+    bottom: 75px;
+    left: 15px;
+    right: 15px;
+
+    @include lg {
+      left: auto;
+      right: auto;
+    }
+  }
+
+  .custom-manual-error {
+    font-size: 14px;
+    color: var(--bootstrap-danger-replica);
+    text-align: left;
+  }
+}

@@ -1,0 +1,24 @@
+.SetProfileForm {
+  padding-top: 25px;
+  padding-bottom: 30px;
+  width:100%;
+  max-width: 500px;
+  margin: 60px auto;
+  background-color: var(--main-background-color);
+
+  .card {
+    border: none;
+    width:100%;
+  }
+
+  p {
+    text-align: left;
+    margin-bottom: 8px;
+
+    &.comment {
+      font-size: 0.9rem;
+      color: gray;
+      font-style: italic;
+    }
+  }
+}

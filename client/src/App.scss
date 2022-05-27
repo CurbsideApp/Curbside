@@ -1,0 +1,93 @@
+// change the theme of Bootstrap components
+$theme-colors: (
+  'primary': #357960,
+  'danger': #ff4136,
+  'info': #357960,
+);
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+// Import Bootstrap and its default variables
+@import '~bootstrap/scss/bootstrap.scss';
+
+:root {
+  /* --main-green-color: #13C1AC; */
+  --main-green-color: #357960;
+  --main-background-color: #efeded;
+  --main-gray: rgb(136, 136, 136);
+  --bootstrap-danger-replica: #ff4136;
+  --header-height: 60px;
+  --footer-height: 60px;
+}
+
+html,
+body,
+#root,
+.App {
+  height: 100%;
+  box-sizing: border-box;
+  background-color: var(--main-background-color);
+}
+
+.App {
+  text-align: center;
+  min-width: 250px;
+  margin: auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+
+  font-family: 'Montserrat', 'Quicksand', sans-serif;
+
+  h3 {
+    text-align: left;
+    padding-left: 3vw;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgb(193, 189, 189);
+  }
+}
+
+input[type='text'] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+// Small tablets and large smartphones (landscape view)
+$screen-sm-min: 576px;
+
+// Small tablets (portrait view)
+$screen-md-min: 768px;
+
+// Tablets and small desktops
+$screen-lg-min: 992px;
+
+// Large tablets and desktops
+$screen-xl-min: 1200px;
+
+// Small devices
+@mixin sm {
+  @media (min-width: #{$screen-sm-min}) {
+    @content;
+  }
+}
+
+// Medium devices
+@mixin md {
+  @media (min-width: #{$screen-md-min}) {
+    @content;
+  }
+}
+
+// Large devices
+@mixin lg {
+  @media (min-width: #{$screen-lg-min}) {
+    @content;
+  }
+}
+
+// Extra large devices
+@mixin xl {
+  @media (min-width: #{$screen-xl-min}) {
+    @content;
+  }
+}

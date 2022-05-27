@@ -3,24 +3,46 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.ts",
+  "prisma": {
+    "seed:dev": "ts-node dotenv -e config/dev.env -- prisma/seeds/seed.ts",
+    "seed:test": "ts-node dotenv -e config/test.env -- prisma/seeds/seed.ts"
+  },
   "scripts": {
     "test": "cross-env NODE_ENV=test jest",
-    "start": "cross-env NODE_ENV=dev nodemon"
+    "start": "npm run db:upgrade:dev && cross-env NODE_ENV=dev nodemon",
+    "db:upgrade:dev": "dotenv -e config/dev.env -- prisma migrate dev",
+    "db:upgrade:test": "dotenv -e config/test.env -- prisma migrate dev",
+    "seed:dev": "dotenv -e config/dev.env -- ts-node prisma/seeds/seed.ts",
+    "seed:test": "dotenv -e config/test.env -- ts-node prisma/seeds/seed.ts"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^3.13.0",
     "cors": "^2.8.5",
+    "dotenv-cli": "^5.1.0",
     "express": "^4.18.1",
+    "firebase-admin": "^10.2.0",
+    "http": "^0.0.1-security",
+    "latest": "^0.2.0",
     "morgan": "^1.10.0",
-    "path": "^0.12.7"
+    "node-fetch": "^2.6.7",
+    "path": "^0.12.7",
+    "socket.io": "^4.5.0",
+    "socket.io-client": "^4.5.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
+    "@types/jest": "^27.5.0",
     "@types/morgan": "^1.9.3",
+    "@types/supertest": "^2.0.12",
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.0",
-    "nodemon": "^2.0.16"
+    "jest": "^28.1.0",
+    "nodemon": "^2.0.16",
+    "prisma": "^3.13.0",
+    "supertest": "^6.2.3",
+    "ts-jest": "^28.0.2"
   }
 }

@@ -1,0 +1,22 @@
+.filter-frame {
+  margin-bottom: 10px;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+.auto-complete-search-frame{
+  display: flex;
+  gap: 6px;
+  flex-direction: column;
+}
+.auto-complete-search{
+  width: 100% !important;
+}
+.form-select:focus {
+  border-color: var(--main-green-color);
+  box-shadow: rgba(53, 121, 96, 0.2) 0px 2px 8px 0px;
+}
+.form-control:focus {
+  border-color: var(--main-green-color);
+  box-shadow: rgba(53, 121, 96, 0.2) 0px 2px 8px 0px;
+}

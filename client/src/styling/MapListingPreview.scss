@@ -1,0 +1,108 @@
+@import '../App.scss';
+
+.Card-Listing-Preview {
+  margin: 15px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 5px;
+  background-color: white;
+  height: 100px;
+  color: black;
+  border-radius: 10px;
+  text-decoration: none;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+  @include lg {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &.with-user {
+    bottom: 65px;
+  }
+
+  .closeBtn {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    height: 25px;
+    width: 25px;
+    border-radius: 12.5px;
+    border: solid white 2px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 100000;
+
+    .xBtnIcon {
+      filter: brightness(0) invert(1);
+
+      height: 8px;
+    }
+  }
+
+  .link-element {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    width: 100%;
+    height: 100%;
+    color: black;
+    text-decoration: none;
+
+    .Preview-Image-Container {
+      min-width: 30%;
+      max-width: 30%;
+      overflow: hidden;
+      border-radius: 10px 0 0 10px;
+
+      .Preview-Img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .Preview-Text-Content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: 8px 10px 3px 10px;
+      text-align: left;
+      width: 100%;
+
+      h6 {
+        overflow: hidden;
+        text-decoration: none;
+      }
+
+      .Preview-Price-Listing-Container {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+
+        .Preview-Price {
+          font-size: 85%;
+          font-weight: bold;
+        }
+
+        .Preview-Rating {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 5px;
+
+          .bi-star-fill {
+            font-size: 80%;
+          }
+        }
+      }
+    }
+  }
+}

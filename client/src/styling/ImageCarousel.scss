@@ -1,0 +1,21 @@
+.Carousel {
+  height: 400px;
+  width: 100vw;
+  
+  .carousel-inner {
+    height: 400px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background:rgba(236, 239, 241, .7);
+    border-radius: 7px;
+    
+    img {
+       max-width: 100%;
+       max-height: 400px;
+       border-radius: 7px;
+       object-fit: contain;
+     }
+  }
+  
+} 

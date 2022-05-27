@@ -1,0 +1,65 @@
+@import '../App.scss';
+
+.CardListings {
+  display: flex;
+  flex-wrap: wrap;
+  width: 96%;
+  max-width: 600px;
+  justify-content: flex-start;
+  margin: 0 auto;
+
+  word-break: break-all;
+
+  .message-not-logged-in {
+    color: rgb(229, 0, 0);
+    border-radius: 5px;
+    width: 300px;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    top: 12px;
+    z-index: 5;
+    padding: 4px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px;
+    opacity: 0;
+    transition: opacity 0.3s linear;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  a {
+    width: 100%;
+  }
+  .listing-preview {
+    width: 50%;
+    display: inline-flex;
+    position: relative;
+
+    .heart-wrapper {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+    }
+
+    button {
+      position: absolute;
+      top: 14px;
+      left: 84%;
+      border: none;
+      background-color: transparent;
+    }
+
+    @include lg {
+      width: 33%;
+    }
+  }
+
+  @include lg {
+    max-width: 900px;
+  }
+}

@@ -1,0 +1,22 @@
+.CustomButton{
+  padding: 2px 15px 3px 15px;
+  border-radius: 4px;
+  transition: 0.3s;
+
+  &:hover{
+    box-shadow: 0 0 5px 1px #c3bcbc;
+  }
+
+  &.fill{
+    background-color: var(--main-green-color);
+    border: 1px solid var(--main-green-color);
+    color: aliceblue;
+  }
+  
+  &.nofill{
+    background-color: white;
+    border: 2px solid var(--main-green-color);
+    color: var(--main-green-color);
+  }
+
+}

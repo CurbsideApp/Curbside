@@ -1,0 +1,10 @@
+.form-container{
+  height: calc(100vh - var(--header-height));
+  display: flex;
+
+  .form-control:focus {
+    border-color: var(--main-green-color);
+    box-shadow: rgba(53, 121, 96, 0.2) 0px 2px 8px 0px;
+  }
+  
+}

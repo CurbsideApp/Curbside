@@ -1,0 +1,114 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String        @id
+  firstName     String?
+  lastName      String?
+  emailVerified Boolean       @default(false)
+  email         String        @unique
+  photoUrl      String?
+  city          String?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  longitude     Float?
+  latitude      Float?
+  favorites     Listing[]     @relation("favorites")
+  listings      Listing[]
+  buyer         Transaction[] @relation("buyer")
+  seller        Transaction[] @relation("seller")
+  sellerchat    Chat[]        @relation("sellerChat")
+  buyerchat     Chat[]        @relation("buyerChat")
+  sellerRating  Rating[]      @relation("sellerRating")
+  buyerRating   Rating[]      @relation("buyerRating")
+
+}
+
+model Listing {
+  id            String           @id @default(cuid())
+  user          User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId        String
+  transactionId String           @default(cuid())
+  priceInCents  Int
+  currency      String
+  title         String
+  description   String
+  photoUrls     String[]
+  status        ListingStatus    @default(available)
+  longitude     Float
+  latitude      Float
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+  tags          String
+  condition     ListingCondition
+  chats         Chat[]
+  favorites     User[]           @relation("favorites")
+}
+
+enum ListingStatus {
+  available
+  reserved
+  sold
+}
+
+enum ListingCondition {
+  new
+  gentlyUsed
+  used
+}
+
+model Transaction {
+  id        String   @id @default(cuid())
+  listingId String
+  buyerId   String?
+  sellerId  String
+  buyer     User?    @relation(name: "buyer", fields: [buyerId], references: [id], onDelete: Cascade)
+  seller    User     @relation(name: "seller", fields: [sellerId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+}
+
+model Chat {
+  id        String     @id @default(cuid())
+  listing   Listing    @relation(fields: [listingId], references: [id])
+  listingId String
+  seller    User       @relation(name: "sellerChat", fields: [sellerId], references: [id], onDelete: Cascade)
+  sellerId  String
+  buyer     User       @relation(name: "buyerChat", fields: [buyerId], references: [id], onDelete: Cascade)
+  buyerId   String
+  status    ChatStatus @default(open)
+  messages  Message[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+enum ChatStatus {
+  open
+  closed
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  senderId  String
+  chat      Chat     @relation(fields: [chatId], references: [id], onDelete: Cascade)
+  chatId    String   @default(cuid())
+  body      String
+  createdAt DateTime @default(now())
+}
+
+model Rating {
+  id       String @id @default(cuid())
+  seller   User   @relation(name: "sellerRating", fields: [sellerId], references: [id], onDelete: Cascade)
+  sellerId String
+  buyer    User   @relation(name: "buyerRating", fields: [buyerId], references: [id], onDelete: Cascade)
+  buyerId  String
+  rating   Int
+}

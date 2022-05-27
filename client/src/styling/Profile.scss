@@ -1,0 +1,70 @@
+.Profile {
+  padding-top: 25px;
+  padding-bottom: 80px;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0px auto;
+  gap: 10px;
+
+  p.option-name {
+    margin-bottom: 0;
+    text-align: left;
+    align-self: flex-start;
+    margin-left: 16px;
+  }
+
+  .profile-about-info-wrapper {
+    width: 96%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .profile-basic-info-edit-wrapper {
+      padding: 5px;
+      margin-bottom: 0;
+      // width: 100%;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+
+      p {
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin-bottom: 0;
+      }
+    }
+
+    .profile-info-button-wrapper {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+  }
+
+  .profile-listings-shown-options-wrapper {
+    // height: 60px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 25px;
+    width: 95%;
+
+    .option-name {
+      background-color: transparent;
+      border: none;
+      padding-right: 1.5rem;
+      text-align: left;
+      color: rgb(164, 164, 164);
+
+      &.active {
+        color: var(--main-green-color);
+      }
+    }
+  }
+}

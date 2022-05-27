@@ -1,0 +1,22 @@
+.ProfileImage {
+  min-width: 60px;
+  min-height: 60px;
+  margin: 0;
+  margin-right: 20px;
+  border-radius: 40px;
+  
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+  background-color: #2d2d2d;
+  
+  span {
+    display: inline-flex;
+    margin: auto;
+    font-size: 32px;
+    font-weight: 700;
+    color: white;
+  }
+}
